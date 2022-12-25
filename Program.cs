@@ -6,25 +6,33 @@ namespace AdressManagementBook
 
 
         public static List<Person> People = new List<Person>();
+
+
         public static void Main(string[] args)
         {
             Console.WriteLine("WelCome to Adress Book");
 
             string EnterKey = "";
+            int count = 0;
             while (EnterKey != "Exit")
             {
-                Console.WriteLine("Enter the key ADD or DELETE or Exit to manage Your Adress Book");
+                Console.WriteLine("Enter the key ADD or DELETE or Exit or List to manage Your Adress Book");
                 EnterKey = Console.ReadLine();
 
                 switch (EnterKey)
                 {
                     case "ADD":
                         AddPerson();
+                        count++;
                         break;
                     case "DELETE":
                         RemovePerson();
                         break;
+                    case "List":
+                        ListPeople();
+                        break;
                  }
+                Console.WriteLine("Number Conacts in Adress Book " + count);
             }
         }
             private static void AddPerson()
@@ -97,7 +105,24 @@ namespace AdressManagementBook
                 string firstName = Console.ReadLine();
                 return People.Where(x => x.FirstName.ToLower() == firstName.ToLower()).ToList();
             }
-            private static void PrintPerson(Person person)
+        private static void ListPeople()
+        {
+            Console.Clear();
+            if (People.Count == 0)
+            {
+                Console.WriteLine("Your address book is empty. Press any key to continue.");
+                Console.ReadKey();
+                return;
+            }
+            Console.WriteLine("Here are the current people in your address book:\n");
+            foreach (var person in People)
+            {
+                PrintPerson(person);
+            }
+            Console.WriteLine("\nPress any key to continue.");
+            Console.ReadKey();
+        }
+        private static void PrintPerson(Person person)
             {
                 Console.WriteLine("First Name: " + person.FirstName);
                 Console.WriteLine("Last Name: " + person.LastName);
