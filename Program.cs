@@ -5,10 +5,21 @@
 
 
         public static List<Person> People = new List<Person>();
-       public static void Main(string[] args)
+
+        public static void Main(string[] args)
         {
-            Console.WriteLine("WelCome to Adress Book");
-                Console.Clear();
+            { Console.WriteLine("WelCome to Adress Book"); }
+            for (int i = 1; i <= 5; i++)
+            {
+                AddPerson();
+            }
+
+        }
+
+
+
+        private static void AddPerson()
+        { 
 
                 Person person = new Person();
 
@@ -34,7 +45,8 @@
                 person.Email = Console.ReadLine();
 
                 People.Add(person);
-            }
+          
+        }
 
         }
 
